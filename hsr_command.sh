@@ -1,10 +1,11 @@
 #! /bin/bash
-docker run --rm --net=host -it detic_ros:latest \
+docker run --rm --net=host -it --gpus 1 detic_ros:latest \
     /bin/bash -i -c \
     'source ~/.bashrc; \
     rossetip; rossetmaster 133.11.216.222; \
     roslaunch detic_ros sample_detection.launch \
     debug:=true \
+    confidence_threshold:=0.3\
     vocabulary:=custom \
     custom_vocabulary:=box \
     input_image:=/hsrb/hand_camera/color/image_raw\
