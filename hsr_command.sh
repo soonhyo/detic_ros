@@ -6,6 +6,7 @@ docker run --rm --net=host -it --gpus 1 detic_ros:latest \
     roslaunch detic_ros sample_detection.launch \
     debug:=true \
     confidence_threshold:=0.3\
+    use_pca:=true\
     vocabulary:=custom \
     custom_vocabulary:=box \
     input_image:=/hsrb/hand_camera/color/image_raw\
