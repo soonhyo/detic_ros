@@ -52,7 +52,6 @@ docker run --rm --net=host -it --gpus 1 detic_ros:latest \
     debug:=true \
     vocabulary:=custom \
     custom_vocabulary:=bottle,cup'
-```
 
 ### custom vocabulary
 Add additional arguments to the script above. example: `vocabulary:='custom' custom_vocabulary:='bottle,shoe'`. 
