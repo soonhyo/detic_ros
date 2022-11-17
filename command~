@@ -1,0 +1,9 @@
+docker run --rm --net=host -it detic_ros:latest \
+    /bin/bash -i -c \
+    'source ~/.bashrc; \
+    rossetip; rossetmaster 133.11.216.219; \
+    roslaunch detic_ros sample_detection.launch \
+    debug:=true \
+    input_image:=/hsrb/head_rgbd_sensor/rgb/image_rect_color \
+    input_depth:=/hsrb/head_rgbd_sensor/depth_registered/image\
+    input_camera_info:=/hsrb/head_rgbd_sensor/depth_registered/camera_info'
