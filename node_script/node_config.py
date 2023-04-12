@@ -86,7 +86,7 @@ class NodeConfig:
             rospy.get_param('~model_type', 'swin'),
             rospy.get_param('~enable_pubsub', True),
             rospy.get_param('~out_debug_img', True),
-            rospy.get_param('~out_debug_segimg', False),
+            rospy.get_param('~out_debug_segimg', True),
             rospy.get_param('~verbose', True),
             rospy.get_param('~use_jsk_msgs', False),
             rospy.get_param('~confidence_threshold', 0.5),
