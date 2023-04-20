@@ -1,4 +1,4 @@
-<launch>
+<launch>o
 
   <arg name="standalone" value="false"/> <!-- debug nodes by setting then standalone -->
   <arg name="MANAGER" value="detic_detection_manager" unless="$(arg standalone)"/>
@@ -21,6 +21,10 @@
 
   <arg name="_input_image" default="/$(arg namespace)/decompressed_image"/>
   <arg name="_input_depth" default="/$(arg namespace)/decompressed_depth"/>
+
+  <arg name="masked_image" default="baseball" />
+  <arg name="seginfo" default="/docker/detic_segmentor/segmentation_info" />
+  <arg name="out_image" default="/docker/detic_segmentor/instance_segmented_image"/>
 
   <group ns='$(arg namespace)'>
 
@@ -49,6 +53,16 @@
       <param name="vocabulary" value="$(arg vocabulary)"/>
       <param name="custom_vocabulary" value="$(arg custom_vocabulary)"/>
       <param name="confidence_threshold" value="$(arg confidence_threshold)"/>
+    </node>
+
+  <node name="masked_image_publisher" pkg="detic_ros" type="masked_image_publisher.py" output="screen">
+      <param name="~masked_image" value="$(arg masked_image)"/>
+      <param name="~in_image" value="$(arg input_image)"/>
+      <param name="~seginfo" value="$(arg seginfo)"/>
+      <param name="~out_image" value="$(arg out_image)"/>
+    </node>
+
+<node name="sub_segimg_clip" pkg="detic_ros" type="sub_segimg.py" output="screen">
     </node>
 
     <node name="detic_label_image_to_indices"
@@ -93,7 +107,6 @@
       </rosparam>
       <param name="use_pca" value="$(arg use_pca)"/>
     </node>
-
   </group>
 
 </launch>
